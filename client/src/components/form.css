@@ -29,7 +29,7 @@
 .content {
     display: flex;
     flex-wrap: wrap;
-    padding: 20px 0;
+    padding: 20px 0 0;
     justify-content: space-between;
 }
 
@@ -160,17 +160,14 @@ input:hover {
 
 }
 
-.socialLinksContainer{
-    padding: 20px;
-}
-
 
 .socialMediaContainer{
     position: relative;
-    margin-top: 20px;
-    padding: 30px;
+    padding: 15px;
     background-color: #f0f0ff;
+    margin-bottom: 15px;
 }
+
 .garbageCan{
     cursor: pointer;
     position: absolute;
@@ -222,4 +219,8 @@ input:hover {
 .addIcon:hover{
     color: white;
     background-color: black;
+}
+
+.about {
+    margin-top: 20px;
 }

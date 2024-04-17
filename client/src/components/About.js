@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function About(props) {
-
   const {about,description}=props
 
   return (

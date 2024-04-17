@@ -14,19 +14,19 @@ import Info2 from '../components/Info2';
 
 
 import './home.css'
-function Home() {
-    const [fullName, setFullName] = useState('John doe')
-    const [position, setPosition] = useState('position')
-    const [company, setCompany] = useState('xyzCompany')
+function CreateCard() {
+    const [fullName, setFullName] = useState('')
+    const [position, setPosition] = useState('')
+    const [company, setCompany] = useState('')
     const [socialTitle, setSocialTitle] = useState('Social Links')
     const [socialDesc, setSocialDesc] = useState('Description')
     const [about, setAbout] = useState('About')
-    const [description, setDescription] = useState('"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat')
+    const [description, setDescription] = useState('')
 
     const [contactDetails, setContactDetails] = useState([
-        { Contact: { Label: 'Contact :', Number: '' } },
-        { Email: { Label: 'Email :', EmailAddress: '' } },
-        { Address: { Label: 'Address :', City: '', Country: '', State: '', Zipcode: '' } },
+        { Contact: { Label: '', Number: '' } },
+        { Email: { Label: '', EmailAddress: '' } },
+        { Address: { Label: '', City: '', Country: '', State: '', Zipcode: '' } },
     ]);
     const [socialLinks, setSocialLinks] = useState([
         { type: 'Facebook', url: '', title: 'Facebook', subtitle: 'Follow us on Facebook' }
@@ -116,9 +116,9 @@ function Home() {
                         handleSubmit={handleSubmit}
                     />
                 </div>
-                <div className='cardDesign'>
+                <div className='cardDesign text-white'>
                     <Info2 selectedFile={selectedFile} position={position} fullName={fullName} company={company} />
-                    <div className="container">
+                    <div className="container px-4 pb-4">
                         <About about={about} description={description} />
                         <ContactDetails contactDetails={contactDetails} />
                         <SocialDetails socialTitle={socialTitle} socialDesc={socialDesc} socialLinks={socialLinks} />
@@ -130,4 +130,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default CreateCard;

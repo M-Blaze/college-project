@@ -29,7 +29,7 @@ function Login(props) {
         <>
             <div className='waraper'>
                 <div className="center">
-                    <h1>Login</h1>
+                    <h1 className='text-xl'>DigiCard</h1>
                     <form method="post" onSubmit={submitHandler}>
                         <div className="txt_field">
                             <input onChange={(e)=> setEmail(e.target.value)} value={email} type="email" required />

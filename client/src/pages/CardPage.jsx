@@ -33,9 +33,9 @@ function CardPage() {
 
     return (
         <div>
-            <div style={{margin: '30px auto'}} className="cardDesign">
+            <div style={{margin: '30px auto'}} className="cardDesign text-white">
                 <Info selectedFile={digiCards.img} position={digiCards.position} fullName={digiCards.fullName} company={digiCards.company} />
-                <div className="container">
+                <div className="container px-4 pb-4">
                     <About about={digiCards.about} description={digiCards.description} />
                     <ContactDetails contactDetails={digiCards.contactDetails} />
                     <SocialDetails socialTitle={digiCards.socialTitle} socialDesc={digiCards.socialDesc} socialLinks={digiCards.socialLinks} />
