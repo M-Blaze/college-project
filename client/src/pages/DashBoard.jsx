@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import QRCodeGenerator from './QRCodeGenerator';
+import Navbar from '../components/Navbar';
+
 
 function DashBoard() {
     const navigate = useNavigate()
@@ -46,8 +48,9 @@ function DashBoard() {
     }
 
     return (
-        <div className='dashBoard'>
-            <h2>DashBoard</h2>
+        <div className='dashBoard pb-5'>
+            <Navbar />
+            <h2 className='text-black'>DashBoard</h2>
             <div className='tableContainer'>
                 <table className="table">
                     <thead>

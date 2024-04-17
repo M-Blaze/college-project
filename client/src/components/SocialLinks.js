@@ -1,6 +1,7 @@
 import React from 'react';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Plus } from 'lucide-react'
 
 function SocialLinks(props) {
     const { socialLinks,
@@ -25,7 +26,7 @@ function SocialLinks(props) {
         setSocialLinks(data)
     }
     const addFields = () => {
-        let object = { type: 'Facebook', url: '', title: 'Facebook', subtitle: 'Follow us on Facebook' }
+        let object = { type: 'Facebook', url: '', title: '', subtitle: '' }
         setSocialLinks([...socialLinks, object])
     }
     const removeFields = (index) => {
@@ -44,15 +45,14 @@ function SocialLinks(props) {
 
 
     return (
-        <div className='socialLinksContainer'>
-           
+        <div className='socialLinksContainer mb-10'>
             <div className="social-link">
                 <label htmlFor="fullname">Title</label>
                 <input value={socialTitle} onChange={handleInputChange} type="Text" name="socialTitle" placeholder="Enter your Title" ></input>
             </div>
             <div className="social-link">
                 <label htmlFor="fullname">Description</label>
-                <textarea value={socialDesc} onChange={handleInputChange} rows="5" cols="85" type="Textfield" className='textArea' name="socialDesc" placeholder="Description" ></textarea>
+                <textarea value={socialDesc} onChange={handleInputChange} rows="5" cols="85" type="Textfield" className='outline-none shadow-xl p-5' name="socialDesc" placeholder="Description" ></textarea>
             </div>
             {socialLinks.map((social, index) => {
                 return (
@@ -84,10 +84,14 @@ function SocialLinks(props) {
                 )
             })}
 
-            <div onClick={addFields} className="addComponent">
-                <div >+ Add Component</div>
-            </div>
-
+            <button
+                onClick={addFields}
+                type="button"
+                className="inline-flex items-center rounded-md bg-purple-500 px-3 py-2 text-sm font-semibold text-white hover:bg-purple-500/80"
+                >
+                <Plus className="h-4 w-4 mr-4" />
+                Add more social links
+            </button>
         </div>
     );
 }

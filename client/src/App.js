@@ -2,7 +2,8 @@
 import './App.css';
 import React from "react";
 import { Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
+import HomePage from './pages/HomePage';
+import CreateCard from './pages/CreateCard';
 import Login from './pages/Login';
 import Register from './pages/Register'
 import CardPage from './pages/CardPage'
@@ -13,7 +14,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<HomePage />} />
+        <Route path='/create-card' element={<CreateCard />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/digitalcardPage/:id' element={<CardPage />}></Route>
