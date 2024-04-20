@@ -1,14 +1,13 @@
 import { useRef } from 'react'
+import useMouseMoveCalculator from './useMouseMoveCalculator'
+
 
 const useDraggable = () => {
-  const mouseCoordinateRef = useRef(null)
+  const [mouseMoveOnDragStart, mouseMoveonDrag] = useMouseMoveCalculator()
   const contentCoordinateRef = useRef(null)
 
   const dragStartHandler = (e) => {
-    mouseCoordinateRef.current = {
-      x: e.clientX,
-      y: e.clientY
-    }
+    mouseMoveOnDragStart(e)
     contentCoordinateRef.current = {
       x: e.target.style.left || '0px',
       y: e.target.style.top || '0px'
@@ -16,24 +15,21 @@ const useDraggable = () => {
   }
 
   const dragHandler = (e) => {
-    const { x, y } = mouseCoordinateRef.current
-    const { x: contentX, y: contentY } = contentCoordinateRef.current
-    const mouseMovedX = (x - e.clientX) + 'px'
-    const mouseMovedY = (y - e.clientY) + 'px'
-    const newCoordinateX = `calc(${contentX} - ${mouseMovedX})`
-    const newCoordinateY = `calc(${contentY} - ${mouseMovedY})`
-    
     if (!e.clientX) return
+
+    
+    const [mouseMovedX, mouseMovedY] = mouseMoveonDrag(e)
+    const { x: contentX, y: contentY } = contentCoordinateRef.current
+    console.log(e.target)
+    const newCoordinateX = `calc(${contentX} - ${mouseMovedX}px)`
+    const newCoordinateY = `calc(${contentY} - ${mouseMovedY}px)`
     
     e.target.style.left = newCoordinateX
     e.target.style.top = newCoordinateY
   }
 
-  const dragEndHandler = (e) => {
-    return [e.target.style.left, e.target.style.top]
-  }
   
-  return [dragStartHandler, dragHandler, dragEndHandler]
+  return [dragStartHandler, dragHandler]
 }
 
 export default useDraggable
