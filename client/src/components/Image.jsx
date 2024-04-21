@@ -9,7 +9,7 @@ const Image = ({ src, styles }) => {
   return (
     <div draggable className="img-holder absolute w-max" onDragStart={dragStartHandler} onDrag={dragHandler} style={styles} >
       <Resizer>
-        <img draggable={false} src={src} alt={src} />
+        <img draggable={false} src={src} alt={src} /> 
       </Resizer>
     </div>
   )
