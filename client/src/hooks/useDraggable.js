@@ -17,10 +17,8 @@ const useDraggable = () => {
   const dragHandler = (e) => {
     if (!e.clientX) return
 
-    
     const [mouseMovedX, mouseMovedY] = mouseMoveonDrag(e)
     const { x: contentX, y: contentY } = contentCoordinateRef.current
-    console.log(e.target)
     const newCoordinateX = `calc(${contentX} - ${mouseMovedX}px)`
     const newCoordinateY = `calc(${contentY} - ${mouseMovedY}px)`
     
