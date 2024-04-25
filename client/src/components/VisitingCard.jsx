@@ -8,7 +8,7 @@ const VisitingCard = ({ clickHandler, style, classes, children }) => {
   }
 
   return (
-    <div className={`visiting-card h-52 w-96 rounded-md shadow-lg cursor-pointer overflow-hidden relative ${classes}`} onClick={onClickHandler} style={style} >
+    <div className={`visiting-card h-64 w-[480px] rounded-md shadow-lg cursor-pointer overflow-hidden relative ${classes}`} onClick={onClickHandler} style={style} >
       { children }
     </div>
   )
