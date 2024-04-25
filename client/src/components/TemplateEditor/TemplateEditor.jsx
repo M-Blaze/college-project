@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react'
 
 import VisitingCard from '../VisitingCard'
-import EditorOptions from './components/EditorOptions'
 import EditableText from '../EditableText'
 import Image from '../Image'
 import EditorBar from './components/EditorBar'
@@ -94,8 +93,7 @@ const TemplateEditor = () => {
         <h2>Template Editor</h2>
       </div>
       <div className="content-wrap flex flex-wrap justify-center relative">
-        <EditorOptions addElement={addElement} />
-        <EditorBar />
+        <EditorBar addElement={addElement} />
         <VisitingCard classes="bg-red-500" style={cardStyles}>
           {
             cardElements.map((element, index) => {
