@@ -1,6 +1,7 @@
-import React from 'react'
-import Popup from 'reactjs-popup';
+import React, { useState } from 'react'
 import { Baseline, Bold, Pencil, Trash2 } from 'lucide-react';
+import { usePopperTooltip } from 'react-popper-tooltip';
+import 'react-popper-tooltip/dist/styles.css';
 
 import Text from './Text';
 
@@ -13,39 +14,54 @@ const IconWrap = ({ children }) => {
 }
 
 const EditableText = ({ textData }) => {
-  // const openTooltip = () => toolTipRef.current.open();
+  const {
+    getArrowProps,
+    getTooltipProps,
+    setTooltipRef,
+    setTriggerRef,
+    visible
+  } = usePopperTooltip({
+    placement: "top",
+    trigger: "click",
+    interactive: true,
+    offset: [10, 20]
+  });
 
   return (
     <>
-      <Popup arrow={false} trigger={<div className="editable-text-wrapper">
-        <Text styles={textData.styles} content={textData.content} />
-        </div>} position="bottom center" closeOnDocumentClick
-      >
-        <div className="edit-options bg-white shadow-lg rounded-md p-2">
-          <ul className="options-list flex">
-            <li>
-              <IconWrap>
-                <Baseline className='h-4 w-4'/>
-              </IconWrap>
-            </li>
-            <li>
-              <IconWrap>
-                <Bold className='h-4 w-4' />
-              </IconWrap>
-            </li>
-            <li>
-              <IconWrap>
-                <Pencil className='h-4 w-4' />
-              </IconWrap>
-            </li>
-            <li>
-              <IconWrap>
-                <Trash2 className='h-4 w-4' />
-              </IconWrap>
-            </li>
-          </ul>
+      <Text ref={setTriggerRef} styles={textData.styles} content={textData.content} />
+      {visible && (
+        <div
+          ref={setTooltipRef}
+          {...getTooltipProps({ className: 'tooltip-container' })}
+        >
+          <div {...getArrowProps({ className: 'tooltip-arrow' })} />
+          <div className="edit-options bg-white shadow-lg rounded-md p-2">
+            <ul className="options-list flex">
+              <li>
+                <IconWrap>
+                  <Baseline className='h-4 w-4'/>
+                </IconWrap>
+              </li>
+              <li>
+                <IconWrap>
+                  <Bold className='h-4 w-4' />
+                </IconWrap>
+              </li>
+              <li>
+                <IconWrap>
+                  <Pencil className='h-4 w-4' />
+                </IconWrap>
+              </li>
+              <li>
+                <IconWrap>
+                  <Trash2 className='h-4 w-4' />
+                </IconWrap>
+              </li>
+            </ul>
+          </div>
         </div>
-      </Popup>
+      )}
     </>
   )
 }
