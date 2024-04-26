@@ -1,9 +1,11 @@
 import React, { useRef, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid';
 
 import VisitingCard from '../VisitingCard'
 import EditableText from '../EditableText'
-import Image from '../Image'
-import EditorBar from './components/EditorBar'
+import EditableImage from '../EditableImage'
+import TextEditorOptions from './components/TextEditorOptions'
+import CardEditorOptions from './components/CardEditorOptions'
 
 const DEFAULT_TEXT_DATA = { 
   type: "text",
@@ -31,6 +33,8 @@ const TemplateEditor = () => {
   const imageInputRef = useRef()
   const [cardStyles, setCardStyles] = useState({ })
   const [cardElements, setCardElements] = useState([])
+  const [visibleEditor, setVisibleEditor] = useState("")
+  const [activeElement, setActiveElement] = useState(null)
 
   const getHighestZIndex = () => {
     const highestZIndex = cardElements.reduce((max, element) => {
@@ -49,7 +53,8 @@ const TemplateEditor = () => {
       const elements = structuredClone(previousElements)
       const highestZIndex = getHighestZIndex()
       const newElement = structuredClone(DEFAULT_TEXT_DATA)
-
+      
+      newElement.id = uuidv4()
       newElement.styles.zIndex = highestZIndex + 1
       elements.push(newElement)
       return elements
@@ -76,7 +81,8 @@ const TemplateEditor = () => {
         const elements = structuredClone(previousElements)
         const highestZIndex = getHighestZIndex()
         const newImageElement = structuredClone(DEFAULT_IMAGE_DATA)
-  
+        
+        newImageElement.id = uuidv4()
         newImageElement.styles.zIndex = highestZIndex + 1
         newImageElement.src = e.target.result
         elements.push(newImageElement)
@@ -86,22 +92,42 @@ const TemplateEditor = () => {
 
     reader.readAsDataURL(inputEvent.target.files[0])           
   }
+
+  const removeElement = (index) => {
+    const cloned__cardElements = structuredClone(cardElements)
+
+    cloned__cardElements.splice(index, 1)
+    setCardElements(cloned__cardElements)
+  }
+
+  const getActiveEditor = () => {
+    if (visibleEditor === 'text-editor') return (<TextEditorOptions />)
+
+    return (<CardEditorOptions addElement={addElement}  />)
+  }
   
+
+  const setActiveElementHandler = (elementId) => {
+    if (activeElement === elementId) return
+
+    setActiveElement(elementId)
+  }
+
   return (
     <div className='container'>
       <div className="block-header pt-5 mb-5">
         <h2>Template Editor</h2>
       </div>
       <div className="content-wrap flex flex-wrap justify-center relative">
-        <EditorBar addElement={addElement} />
+        { getActiveEditor() }
         <VisitingCard classes="bg-red-500" style={cardStyles}>
           {
-            cardElements.map((element, index) => {
+            cardElements.map((element) => {
               if (element.type === "text") {
-                return <EditableText key={index} textData={element} />
+                return <EditableText key={element.id} textData={element} setActive={() => setActiveElementHandler(element.id)}/>
               }
 
-              return <Image key={index} styles={element.styles} src={element.src} />
+              return <EditableImage key={element.id} styles={element.styles} src={element.src} setActive={() => setActiveElementHandler(element.id)} />
             })
           }
         </VisitingCard>
