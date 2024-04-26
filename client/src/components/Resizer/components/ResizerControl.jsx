@@ -1,10 +1,10 @@
-import React, { useMemo, useRef, forwardRef } from 'react'
+import React, { useMemo, useRef } from 'react'
 
 import useMouseMoveCalculator from '../../../hooks/useMouseMoveCalculator'
 
 const DEFAULT_CLASSNAMES = "resize-control border border-gray-400 inline-block w-3 h-3 absolute rounded-full bg-white  hover:bg-purple-500"
 
-const ResizerControl = forwardRef(({ type }, parentRef) => {
+const ResizerControl = ({ type, parentRef }) => {
   const contentDimensionsRef = useRef()
   const [dragStart, dragHandler] = useMouseMoveCalculator()
 
@@ -77,6 +77,6 @@ const ResizerControl = forwardRef(({ type }, parentRef) => {
   return (
     <span draggable onDragStart={resizeStart} onDrag={resize} className={classes}></span>
   )
-})
+}
 
 export default ResizerControl
