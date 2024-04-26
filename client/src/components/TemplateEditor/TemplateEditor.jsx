@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid';
 
 import VisitingCard from '../VisitingCard'
@@ -11,6 +11,10 @@ const DEFAULT_TEXT_DATA = {
   type: "text",
   content: "your text",
   styles: {
+    fontWeight: "400",
+    fontStyle: "",
+    textDecoration: "",
+    fontSize: "18px",
     left: '50%',
     top: '50%',
     transform: "translate(-50%, -50%)",
@@ -108,20 +112,68 @@ const TemplateEditor = () => {
     setCardStyles(newCardStyles)
   }
 
-  const getActiveEditor = () => {
-    if (visibleEditor === 'text') return (<TextEditorOptions />)
+  const activeCardElement = useMemo(() => {
+    return cardElements.find(card => card.id === activeElement)
+  }, [cardElements, activeElement])
+
+  const updateElementStyle = (property, value) => {
+    const elementToUpdate = structuredClone(activeCardElement)
+
+    if (property === "bold") {
+      if (elementToUpdate.styles.fontWeight) {
+        elementToUpdate.styles.fontWeight = ""
+      } else {
+        elementToUpdate.styles.fontWeight = "800"
+      }
+    }
+
+    if (property === "underline") {
+      if (elementToUpdate.styles.textDecoration) {
+        elementToUpdate.styles.textDecoration = ""
+      } else {
+        elementToUpdate.styles.textDecoration = "underline"
+      }
+    }
+
+    if (property === "italic") {
+      if (elementToUpdate.styles.fontStyle) {
+        elementToUpdate.styles.fontStyle = ""
+      } else {
+        elementToUpdate.styles.fontStyle = "italic"
+      }
+    }
+
+    if (property === "color") {
+      elementToUpdate.styles.color = value
+    }
+
+    if (property === "content") {
+      elementToUpdate.content = value
+    }
+
+    if (property === "fontSize") {
+      elementToUpdate.styles.fontSize = value
+    }
+
+    const elements = structuredClone(cardElements)
+    const targetIndex = elements.findIndex(element => element.id === elementToUpdate.id)
+
+    elements[targetIndex] = elementToUpdate
+    setCardElements(elements)
+  }
+
+  const ActiveEditor = useMemo(() => {
+    if (visibleEditor === 'text') return (<TextEditorOptions updateElementStyle={updateElementStyle} textData={activeCardElement} />)
 
     return (<CardEditorOptions addElement={addElement} backgroundColor={cardStyles.backgroundColor}  updateCardStyle={updateCardStyle} />)
-  }
+    //eslint-disable-next-line
+  }, [visibleEditor, activeCardElement])
   
 
   const setActiveElementHandler = (elementId, type) => {
     if (activeElement === elementId) return
 
-    if (type === "text") {
-      setVisibleEditor("text")
-    }
-
+    setVisibleEditor(type)
     setActiveElement(elementId)
   }
 
@@ -131,12 +183,12 @@ const TemplateEditor = () => {
         <h2>Template Editor</h2>
       </div>
       <div className="content-wrap flex flex-wrap justify-center relative">
-        { getActiveEditor() }
-        <VisitingCard classes="bg-red-500" style={cardStyles}>
+        { ActiveEditor }
+        <VisitingCard classes="bg-red-500" style={cardStyles} clickHandler={() => setActiveElementHandler("", "")}>
           {
             cardElements.map((element) => {
               if (element.type === "text") {
-                return <EditableText key={element.id} textData={element} setActive={() => {}}/>
+                return <EditableText key={element.id} textData={element} setActive={() => setActiveElementHandler(element.id, "text")} />
               }
 
               return <EditableImage key={element.id} styles={element.styles} src={element.src} setActive={() => setActiveElementHandler(element.id)} />
