@@ -4,7 +4,7 @@ import { SketchPicker } from 'react-color'
 import { usePopperTooltip } from 'react-popper-tooltip';
 import 'react-popper-tooltip/dist/styles.css';
 
-const CardEditorOptions = ({ addElement }) => {
+const CardEditorOptions = ({ addElement, updateCardStyle, backgroundColor }) => {
   const {
     getArrowProps,
     getTooltipProps,
@@ -20,19 +20,19 @@ const CardEditorOptions = ({ addElement }) => {
 
 
   const handleColorChange = (color) => {
-    console.log(color)
+    updateCardStyle({ backgroundColor: color.hex })
   }
 
   return (
     <div className='editor-bar w-full mb-10'>
       <ul className="editor-options-list flex items-center border-b-2 -mx-1 py-2">
         <li className='flex items-center px-1'>
-          <div className="color-picker-trigger w-10 h-10 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 cursor-pointer" ref={setTriggerRef}></div>
+          <div className="color-picker-trigger w-11 h-11 rounded-md cursor-pointer border-2 shadow-md" style={{ backgroundColor }} ref={setTriggerRef}></div>
           { 
             visible && (
             <div ref={setTooltipRef} {...getTooltipProps({ className: 'tooltip-container' })}>
               <div {...getArrowProps({ className: 'tooltip-arrow' })} />
-              <SketchPicker onChangeComplete={ handleColorChange } />
+              <SketchPicker color={backgroundColor} onChangeComplete={ handleColorChange } />
             </div>)
           }
         </li>

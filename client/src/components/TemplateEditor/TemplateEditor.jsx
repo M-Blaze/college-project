@@ -31,7 +31,9 @@ const DEFAULT_IMAGE_DATA = {
 
 const TemplateEditor = () => {
   const imageInputRef = useRef()
-  const [cardStyles, setCardStyles] = useState({ })
+  const [cardStyles, setCardStyles] = useState({
+    backgroundColor: "#fff"
+  })
   const [cardElements, setCardElements] = useState([])
   const [visibleEditor, setVisibleEditor] = useState("")
   const [activeElement, setActiveElement] = useState(null)
@@ -100,15 +102,25 @@ const TemplateEditor = () => {
     setCardElements(cloned__cardElements)
   }
 
-  const getActiveEditor = () => {
-    if (visibleEditor === 'text-editor') return (<TextEditorOptions />)
+  const updateCardStyle = (styles) => {
+    const newCardStyles = { ...cardStyles, ...styles }
 
-    return (<CardEditorOptions addElement={addElement}  />)
+    setCardStyles(newCardStyles)
+  }
+
+  const getActiveEditor = () => {
+    if (visibleEditor === 'text') return (<TextEditorOptions />)
+
+    return (<CardEditorOptions addElement={addElement} backgroundColor={cardStyles.backgroundColor}  updateCardStyle={updateCardStyle} />)
   }
   
 
-  const setActiveElementHandler = (elementId) => {
+  const setActiveElementHandler = (elementId, type) => {
     if (activeElement === elementId) return
+
+    if (type === "text") {
+      setVisibleEditor("text")
+    }
 
     setActiveElement(elementId)
   }
@@ -124,7 +136,7 @@ const TemplateEditor = () => {
           {
             cardElements.map((element) => {
               if (element.type === "text") {
-                return <EditableText key={element.id} textData={element} setActive={() => setActiveElementHandler(element.id)}/>
+                return <EditableText key={element.id} textData={element} setActive={() => {}}/>
               }
 
               return <EditableImage key={element.id} styles={element.styles} src={element.src} setActive={() => setActiveElementHandler(element.id)} />
