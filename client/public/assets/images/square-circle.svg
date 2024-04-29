@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (b8e25be8, 2022-02-05)"
+   sodipodi:docname="square circle.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.51758558"
+     inkscape:cx="396.06977"
+     inkscape:cy="561.25984"
+     inkscape:window-width="1246"
+     inkscape:window-height="733"
+     inkscape:window-x="194"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#4d4d4d;stroke-width:0.441831"
+       d="M 86.883887,203.1841 C 71.570483,200.40532 58.2647,188.60157 53.673254,173.72247 c -1.92289,-6.23134 -1.913164,-5.8746 -1.922464,-70.51367 -0.0048,-34.114345 0.09473,-62.129741 0.221432,-62.256437 0.126697,-0.126747 15.902964,-0.224921 35.058375,-0.218258 36.791813,0.01336 37.193453,0.03223 43.245643,2.086142 13.74458,4.664576 24.64982,16.273999 28.25428,30.078777 1.43099,5.480531 1.53932,10.431949 1.54292,70.518226 l 0.003,60.42052 -35.01517,-0.0399 c -26.651852,-0.0303 -35.770309,-0.17695 -38.177723,-0.6138 z"
+       id="path1576"
+       inkscape:export-filename="/Users/ksergi/Desktop/square circle.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+  </g>
+</svg>
