@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid';
 
 import VisitingCard from '../VisitingCard'
@@ -145,6 +145,7 @@ const TemplateEditor = ({ cardData, goToTemplateSelector, stepHandler}) => {
   }
 
   const activeCardElement = useMemo(() => {
+    // console.log('card element', activeElement)
     return cardElements.find(card => card.id === activeElement)
   }, [cardElements, activeElement])
 
@@ -194,9 +195,18 @@ const TemplateEditor = ({ cardData, goToTemplateSelector, stepHandler}) => {
     setCardElements(elements)
   }
 
-  const updateMultipleStylesOfElement = (styles) => {
+  useEffect(() => {
+    console.log('use effect')
+  }, [cardElements])
+
+  const updateMultipleStylesOfElement = (activeElement, styles) => {
+    console.log(activeElement)
+
     const elementToUpdate = structuredClone(activeCardElement)
     const elements = structuredClone(cardElements)
+
+    if (!elementToUpdate) return 
+
     const targetIndex = elements.findIndex(element => element.id === elementToUpdate.id)
 
     elementToUpdate.styles = {
@@ -210,7 +220,8 @@ const TemplateEditor = ({ cardData, goToTemplateSelector, stepHandler}) => {
 
   const setActiveElementHandler = (elementId, type) => {
     if (activeElement === elementId) return
-
+    
+    console.log(elementId, 'set element')
     setVisibleEditor(type)
     setActiveElement(elementId)
   }
@@ -251,10 +262,10 @@ const TemplateEditor = ({ cardData, goToTemplateSelector, stepHandler}) => {
           {
             cardElements.map((element, index) => {
               if (element.type === "text") {
-                return <EditableText key={element.id} textData={element} removeElement={() => removeElement(index)} setActive={() => setActiveElementHandler(element.id, "text")} updateElement={updateMultipleStylesOfElement} />
+                return <EditableText key={element.id} textData={element} removeElement={() => removeElement(index)} setActive={() => setActiveElementHandler(element.id, "text")} updateElement={(styles) => updateMultipleStylesOfElement(activeElement, styles)} />
               }
 
-              return <EditableImage key={element.id} removeElement={() => removeElement(index)} styles={element.styles} src={element.src} setActive={() => setActiveElementHandler(element.id)} />
+              return <EditableImage key={element.id} removeElement={() => removeElement(index)} styles={element.styles} src={element.src} setActive={() => setActiveElementHandler(element.id, "image")} updateElement={(styles) => updateMultipleStylesOfElement(activeElement, styles)} />
             })
           }
         </VisitingCard>

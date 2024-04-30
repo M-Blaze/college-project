@@ -82,11 +82,16 @@ const ResizerControl = ({ type, parentRef, updateElement }) => {
 
     parentRef.current.style.width = newWidth
     parentRef.current.style.height = newHeight
-    updateElement({ width: newWidth, height: newHeight })
+  }
+
+  const updateData = () => {
+    const { width, height } = parentRef.current.style
+
+    updateElement({ width, height })
   }
 
   return (
-    <span draggable onDragStart={resizeStart} onDrag={resize} className={classes}></span>
+    <span draggable onDragStart={resizeStart} onDrag={resize} onDragEnd={updateData} className={classes}></span>
   )
 }
 

@@ -3,7 +3,7 @@ import React from 'react'
 import useDraggable from '../hooks/useDraggable'
 import Resizer from './Resizer'
 
-const EditableImage = ({ src, styles, setActive }) => {
+const EditableImage = ({ src, styles, setActive, updateElement }) => {
   const [dragStartHandler, dragHandler] = useDraggable()
   
   const onDragStart = (e) => {
@@ -13,7 +13,7 @@ const EditableImage = ({ src, styles, setActive }) => {
   
   return (
     <div draggable className="img-holder absolute w-max cursor-pointer" onClick={setActive} onDragStart={onDragStart} onDrag={dragHandler} style={styles} >
-      <Resizer>
+      <Resizer updateElement={updateElement}>
         <img draggable={false} src={src} alt={src} /> 
       </Resizer>
     </div>
