@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { SketchPicker } from 'react-color'
-import { Baseline, Bold, Underline, Italic, Trash2 } from 'lucide-react';
+import { Baseline, Bold, Underline, Italic } from 'lucide-react';
 import { usePopperTooltip } from 'react-popper-tooltip';
 import 'react-popper-tooltip/dist/styles.css';
 
@@ -46,6 +46,8 @@ const TextEditorOptions = ({ textData, updateElementStyle }) => {
     updateElementStyle("color", color.hex)
   }
 
+  const textColor = textData.styles.color || '#fff'
+
   return (
     <>
       <li className='px-1'>
@@ -80,7 +82,7 @@ const TextEditorOptions = ({ textData, updateElementStyle }) => {
           visible && (
           <div ref={setTooltipRef} {...getTooltipProps({ className: 'tooltip-container' })}>
             <div {...getArrowProps({ className: 'tooltip-arrow' })} />
-            <SketchPicker onChangeComplete={ handleColorChange } />
+            <SketchPicker color={textColor} onChangeComplete={ handleColorChange } />
           </div>)
         }
       </li>
@@ -101,11 +103,6 @@ const TextEditorOptions = ({ textData, updateElementStyle }) => {
       </li>
       <li className="px-1 w-64">
         <input className='w-full outline-none border-2 p-2 rounded-md' type="text" placeholder='Your text here...' value={textData.content} onChange={inputChangeHandler} />
-      </li>
-      <li className='px-1'>
-        <IconWrap>
-          <Trash2 className='h-4 w-4' />
-        </IconWrap>
       </li>
     </>
   )
