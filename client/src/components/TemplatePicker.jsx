@@ -286,6 +286,90 @@ const CARDS = [
       backgroundPosition: "50% 50%"
     },
     cardElements: [
+      {
+        id: uuidv4(),
+        type: "text",
+        content: "Your Name",
+        styles: {
+          fontWeight: 400,
+          fontSize: "18px",
+          left: 'calc(50% - 170px)',
+          top: 'calc(50% - 40px)',
+          transform: "translate(-50%, -50%)",
+          zIndex: 1,
+          color: "rgb(0, 0, 0)"
+        }
+      },
+      {
+        id: uuidv4(),
+        type: "text",
+        content: "Phone number",
+        styles: {
+          fontWeight: 400,
+          fontSize: "18px",
+          left: 'calc(50% - 155px)',
+          top: 'calc(50% - 5px)',
+          transform: "translate(-50%, -50%)",
+          zIndex: 5,
+          color: "rgb(0, 0, 0)"
+        }
+      },
+      {
+        id: uuidv4(),
+        type: "text",
+        content: "Your Email",
+        styles: {
+          fontWeight: 400,
+          fontSize: "18px",
+          left: 'calc(50% - 170px)',
+          top: 'calc(50% + 60px)',
+          transform: "translate(-50%, -50%)",
+          zIndex: 3,
+          color: "rgb(0, 0, 0)"
+        }
+      },
+      {
+        id: uuidv4(),
+        type: "text",
+        content: "Your Address",
+        styles: {
+          fontWeight: 400,
+          fontSize: "18px",
+          left: 'calc(50% - 160px)',
+          top: 'calc(50% + 30px)',
+          transform: "translate(-50%, -50%)",
+          zIndex: 4,
+          color: "rgb(0, 0, 0)"
+        }
+      },
+      {
+        id: uuidv4(),
+        type: "text",
+        content: "Website LInk",
+        styles: {
+          fontWeight: 400,
+          fontSize: "18px",
+          left: 'calc(50% - 160px)',
+          top: 'calc(50% + 90px)',
+          transform: "translate(-50%, -50%)",
+          zIndex: 7,
+          color: "rgb(0, 0, 0)"
+        }
+      },
+      {
+        id: uuidv4(),
+        type: "text",
+        content: "Image Here",
+        styles: {
+          fontWeight: 400,
+          fontSize: "18px",
+          left: 'calc(50% + 80px)',
+          top: 'calc(50% - 60px)',
+          transform: "translate(-50%, -50%)",
+          zIndex: 4,
+          color: "rgb(0, 0, 0)"
+        }
+      }
     ]
   },
   {
@@ -297,6 +381,90 @@ const CARDS = [
       backgroundPosition: "50% 50%"
     },
     cardElements: [
+      {
+        id: uuidv4(),
+        type: "text",
+        content: "Your Name",
+        styles: {
+          fontWeight: 400,
+          fontSize: "18px",
+          left: 'calc(50% + 130px)',
+          top: 'calc(50% - 85px)',
+          transform: "translate(-50%, -50%)",
+          zIndex: 1,
+          color: "rgb(0, 0, 0)"
+        }
+      },
+      {
+        id: uuidv4(),
+        type: "text",
+        content: "Phone number",
+        styles: {
+          fontWeight: 400,
+          fontSize: "18px",
+          left: 'calc(50% + 145px)',
+          top: 'calc(50% - 50px)',
+          transform: "translate(-50%, -50%)",
+          zIndex: 5,
+          color: "rgb(0, 0, 0)"
+        }
+      },
+      {
+        id: uuidv4(),
+        type: "text",
+        content: "Your Email",
+        styles: {
+          fontWeight: 400,
+          fontSize: "18px",
+          left: 'calc(50% + 130px)',
+          top: 'calc(50% + 10px)',
+          transform: "translate(-50%, -50%)",
+          zIndex: 3,
+          color: "rgb(0, 0, 0)"
+        }
+      },
+      {
+        id: uuidv4(),
+        type: "text",
+        content: "Your Address",
+        styles: {
+          fontWeight: 400,
+          fontSize: "18px",
+          left: 'calc(50% + 140px)',
+          top: 'calc(50% - 20px)',
+          transform: "translate(-50%, -50%)",
+          zIndex: 4,
+          color: "rgb(0, 0, 0)"
+        }
+      },
+      {
+        id: uuidv4(),
+        type: "text",
+        content: "Website LInk",
+        styles: {
+          fontWeight: 400,
+          fontSize: "18px",
+          left: 'calc(50% + 140px)',
+          top: 'calc(50% + 40px)',
+          transform: "translate(-50%, -50%)",
+          zIndex: 7,
+          color: "rgb(0, 0, 0)"
+        }
+      },
+      {
+        id: uuidv4(),
+        type: "text",
+        content: "Image Here",
+        styles: {
+          fontWeight: 400,
+          fontSize: "18px",
+          left: 'calc(50% - 165px)',
+          top: 'calc(50% - 0px)',
+          transform: "translate(-50%, -50%)",
+          zIndex: 4,
+          color: "rgb(0, 0, 0)"
+        }
+      }
     ]
   }
 ]
