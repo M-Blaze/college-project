@@ -19,11 +19,12 @@ const Resizer = ({ children, autoHeight }) => {
         </>
       )
     }
+    
     return null
   }, [isResizable])
 
   return (
-    <div tabIndex={1} onFocus={() => setIsResizable(true)} onBlur={() => setIsResizable(false)} ref={wrapperRef} className={`resize-container relative ${autoHeight && '!h-auto'}`}>
+    <div tabIndex={1} onFocus={() => setIsResizable(true)} onBlur={() => setIsResizable(false)} ref={wrapperRef} className={`resize-container max-w-full max-h-full relative focus-visible:outline-none ${autoHeight && '!h-auto'}`}>
       {resizeControls}
       {children}
   </div>
