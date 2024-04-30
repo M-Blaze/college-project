@@ -26,7 +26,7 @@ function CreateCard() {
         <>
             <Navbar />
             <MultiStepProgressBar activeStep={activeStep} stepHandler={(step) => setActiveStep(step)} />
-            <ActiveCard goNext={goNext} selectCardToEdit={selectCardToEdit} cardData={cardToEdit} />
+            <ActiveCard goNext={goNext} selectCardToEdit={selectCardToEdit} stepHandler={(step) => setActiveStep(step)} cardData={cardToEdit} />
         </>
     );
 }
