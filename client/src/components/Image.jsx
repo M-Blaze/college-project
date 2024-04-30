@@ -2,6 +2,7 @@ import React from 'react'
 
 const Image = ({ imageData }) => {
   let classes = "img-holder absolute"
+  
   const openLink = () => {
     if (!imageData.url) return 
 
