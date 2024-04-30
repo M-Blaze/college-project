@@ -3,7 +3,7 @@ import React, { useState, useRef } from 'react'
 import ResizerControl from './components/ResizerControl'
 import { useMemo } from 'react'
 
-const Resizer = ({ children, autoHeight }) => {
+const Resizer = ({ children, autoHeight, updateElement }) => {
   const [isResizable, setIsResizable] = useState(false)
   const wrapperRef = useRef()
 
@@ -12,15 +12,16 @@ const Resizer = ({ children, autoHeight }) => {
       return (
         <>
           <div className="border-box border-2 border-purple-700 absolute top-0 left-0 right-0 bottom-0" />
-          <ResizerControl type="top-left" parentRef={wrapperRef} />
-          <ResizerControl type="top-right" parentRef={wrapperRef} />
-          <ResizerControl type="bottom-left" parentRef={wrapperRef} />
-          <ResizerControl type="bottom-right" parentRef={wrapperRef} />
+          <ResizerControl type="top-left" parentRef={wrapperRef} updateElement={updateElement} />
+          <ResizerControl type="top-right" parentRef={wrapperRef} updateElement={updateElement} />
+          <ResizerControl type="bottom-left" parentRef={wrapperRef} updateElement={updateElement} />
+          <ResizerControl type="bottom-right" parentRef={wrapperRef} updateElement={updateElement} />
         </>
       )
     }
     
     return null
+    // eslint-disable-next-line
   }, [isResizable])
 
   return (

@@ -4,25 +4,33 @@ import useMouseMoveCalculator from '../../../hooks/useMouseMoveCalculator'
 
 const DEFAULT_CLASSNAMES = "resize-control border border-gray-400 inline-block w-3 h-3 absolute rounded-full bg-white  hover:bg-purple-500"
 
-const ResizerControl = ({ type, parentRef }) => {
+const ResizerControl = ({ type, parentRef, updateElement }) => {
   const contentDimensionsRef = useRef()
   const [dragStart, dragHandler] = useMouseMoveCalculator()
 
   const topLeftResizeHandler = ({ currentWidth, widthToChange, currentHeight, heightToChange }) => {
-    parentRef.current.style.width = `calc(${currentWidth} + ${widthToChange}px)`
-    parentRef.current.style.height = `calc(${currentHeight} + ${heightToChange}px)`
+    const newWidth = `calc(${currentWidth} + ${widthToChange}px)`
+    const newHeight = `calc(${currentHeight} + ${heightToChange}px)`
+
+    return { newWidth, newHeight }
   }
   const topRightResizeHandler = ({ currentWidth, widthToChange, currentHeight, heightToChange }) => {
-    parentRef.current.style.width = `calc(${currentWidth} - ${widthToChange}px)`
-    parentRef.current.style.height = `calc(${currentHeight} + ${heightToChange}px)`
+    const newWidth = `calc(${currentWidth} - ${widthToChange}px)`
+    const newHeight = `calc(${currentHeight} + ${heightToChange}px)`
+    
+    return { newWidth, newHeight }
   }
   const bottomLeftResizeHandler = ({ currentWidth, widthToChange, currentHeight, heightToChange }) => {
-    parentRef.current.style.width = `calc(${currentWidth} + ${widthToChange}px)`
-    parentRef.current.style.height = `calc(${currentHeight} - ${heightToChange}px)`
+    const newWidth = `calc(${currentWidth} + ${widthToChange}px)`
+    const newHeight = `calc(${currentHeight} - ${heightToChange}px)`
+
+    return { newWidth, newHeight }
   }
   const bottomRightResizeHandler = ({ currentWidth, widthToChange, currentHeight, heightToChange }) => {
-    parentRef.current.style.width = `calc(${currentWidth} - ${widthToChange}px)`
-    parentRef.current.style.height = `calc(${currentHeight} - ${heightToChange}px)`
+    const newWidth = `calc(${currentWidth} - ${widthToChange}px)`
+    const newHeight = `calc(${currentHeight} - ${heightToChange}px)`
+
+    return { newWidth, newHeight }
   }
   
   const resizeTypeAndHandler = useMemo(() => {
@@ -70,8 +78,11 @@ const ResizerControl = ({ type, parentRef }) => {
 
     const [widthToChange, heightToChange] = dragHandler(e)
     const { width: currentWidth, height: currentHeight } = contentDimensionsRef.current
+    const { newWidth, newHeight } = resizeHandler({ widthToChange, heightToChange, currentWidth, currentHeight })
 
-    resizeHandler({ widthToChange, heightToChange, currentWidth, currentHeight })
+    parentRef.current.style.width = newWidth
+    parentRef.current.style.height = newHeight
+    updateElement({ width: newWidth, height: newHeight })
   }
 
   return (
