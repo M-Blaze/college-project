@@ -12,7 +12,7 @@ const EditableImage = ({ src, styles, setActive }) => {
   }
   
   return (
-    <div draggable className="img-holder absolute w-max" onClick={setActive} onDragStart={onDragStart} onDrag={dragHandler} style={styles} >
+    <div draggable className="img-holder absolute w-max cursor-pointer" onClick={setActive} onDragStart={onDragStart} onDrag={dragHandler} style={styles} >
       <Resizer>
         <img draggable={false} src={src} alt={src} /> 
       </Resizer>

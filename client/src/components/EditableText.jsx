@@ -3,13 +3,21 @@ import React from 'react'
 import useDraggable from '../hooks/useDraggable'
 import Resizer from './Resizer'
 
-const EditableText = ({ textData, setActive, removeElement }) => {
+const EditableText = ({ textData, setActive, updateElement, removeElement }) => {
   const [dragStartHandler, dragHandler] = useDraggable()
 
   const onDragStart = (e) => {
     e.stopPropagation()
     setActive()
     dragStartHandler(e)
+  }
+
+  const onDrag = (e) => {
+    const styles = dragHandler(e)
+
+    if (!styles) return
+
+    updateElement(styles)
   }
 
   const onClick = (e) => {
@@ -49,10 +57,10 @@ const EditableText = ({ textData, setActive, removeElement }) => {
     e.target.style.left = newCoordinateX
     e.target.style.top = newCoordinateY
   }
-  
+
   return (
-    <div draggable onKeyDown={handleKeyDown} className="text absolute w-max" onClick={onClick} onDragStart={onDragStart} onDrag={dragHandler} style={textData.styles}>
-      <Resizer autoHeight>
+    <div draggable onKeyDown={handleKeyDown} className="text absolute w-max cursor-pointer" onClick={onClick} onDragStart={onDragStart} onDrag={onDrag} style={textData.styles}>
+      <Resizer autoHeight updateElement={updateElement}>
         <div className="text-content w-full h-full outline-none">{textData.content}</div>
       </Resizer>
     </div>
