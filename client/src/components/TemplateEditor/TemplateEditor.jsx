@@ -33,12 +33,10 @@ const DEFAULT_IMAGE_DATA = {
   }
 }
 
-const TemplateEditor = () => {
+const TemplateEditor = ({ cardData }) => {
   const imageInputRef = useRef()
-  const [cardStyles, setCardStyles] = useState({
-    backgroundColor: "#fff"
-  })
-  const [cardElements, setCardElements] = useState([])
+  const [cardStyles, setCardStyles] = useState(cardData.cardStyles)
+  const [cardElements, setCardElements] = useState(cardData.cardElements)
   const [visibleEditor, setVisibleEditor] = useState("")
   const [activeElement, setActiveElement] = useState(null)
 
@@ -75,6 +73,14 @@ const TemplateEditor = () => {
     showImageInput()
   }
 
+  const removeElement = (index) => {
+    const cloned__cardElements = structuredClone(cardElements)
+
+    cloned__cardElements.splice(index, 1)
+    setCardElements(cloned__cardElements)
+    setActiveElementHandler("", "")
+  }
+
   const showImageInput = () => {
     imageInputRef.current.click()
   }
@@ -97,13 +103,6 @@ const TemplateEditor = () => {
     }
 
     reader.readAsDataURL(inputEvent.target.files[0])           
-  }
-
-  const removeElement = (index) => {
-    const cloned__cardElements = structuredClone(cardElements)
-
-    cloned__cardElements.splice(index, 1)
-    setCardElements(cloned__cardElements)
   }
 
   const updateCardStyle = (styles) => {
@@ -160,15 +159,7 @@ const TemplateEditor = () => {
 
     elements[targetIndex] = elementToUpdate
     setCardElements(elements)
-  }
-
-  const ActiveEditor = useMemo(() => {
-    if (visibleEditor === 'text') return (<TextEditorOptions updateElementStyle={updateElementStyle} textData={activeCardElement} />)
-
-    return (<CardEditorOptions addElement={addElement} backgroundColor={cardStyles.backgroundColor}  updateCardStyle={updateCardStyle} />)
-    //eslint-disable-next-line
-  }, [visibleEditor, activeCardElement])
-  
+  }  
 
   const setActiveElementHandler = (elementId, type) => {
     if (activeElement === elementId) return
@@ -183,15 +174,22 @@ const TemplateEditor = () => {
         <h2>Template Editor</h2>
       </div>
       <div className="content-wrap flex flex-wrap justify-center relative">
-        { ActiveEditor }
-        <VisitingCard classes="bg-red-500" style={cardStyles} clickHandler={() => setActiveElementHandler("", "")}>
+        <div className='editor-bar w-full mb-10'>
+          <ul className="editor-options-list flex items-center border-b-2 -mx-1 py-2">
+            <CardEditorOptions addElement={addElement} backgroundColor={cardStyles.backgroundColor}  updateCardStyle={updateCardStyle} />
+            {
+              visibleEditor === 'text' && (<TextEditorOptions updateElementStyle={updateElementStyle} textData={activeCardElement} />)
+            }
+          </ul>
+        </div>
+        <VisitingCard classes="bg-red-500" style={cardData.cardStyles} clickHandler={() => setActiveElementHandler("", "")}>
           {
-            cardElements.map((element) => {
+            cardElements.map((element, index) => {
               if (element.type === "text") {
-                return <EditableText key={element.id} textData={element} setActive={() => setActiveElementHandler(element.id, "text")} />
+                return <EditableText key={element.id} textData={element} removeElement={() => removeElement(index)} setActive={() => setActiveElementHandler(element.id, "text")} />
               }
 
-              return <EditableImage key={element.id} styles={element.styles} src={element.src} setActive={() => setActiveElementHandler(element.id)} />
+              return <EditableImage key={element.id} removeElement={() => removeElement(index)} styles={element.styles} src={element.src} setActive={() => setActiveElementHandler(element.id)} />
             })
           }
         </VisitingCard>

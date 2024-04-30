@@ -1,6 +1,6 @@
 import React from "react";
-import "./MultiStepProgressBar.css";
 import { ProgressBar, Step } from "react-step-progress-bar";
+import "./MultiStepProgressBar.css";
 
 const QUARTER_STEP = 16.665
 const steps = new Array(4).fill(null)

@@ -3,7 +3,7 @@ import React from 'react'
 import useDraggable from '../hooks/useDraggable'
 import Resizer from './Resizer'
 
-const EditableText = ({ textData, setActive, deleteElement }) => {
+const EditableText = ({ textData, setActive, removeElement }) => {
   const [dragStartHandler, dragHandler] = useDraggable()
 
   const onDragStart = (e) => {
@@ -23,7 +23,7 @@ const EditableText = ({ textData, setActive, deleteElement }) => {
     if (!KEYS.includes(e.key)) return
 
     if (e.key === "Delete") {
-      return deleteElement()
+      return removeElement()
     }
     
     let newCoordinateX, newCoordinateY
