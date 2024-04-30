@@ -5,6 +5,14 @@ import VisitingCard from './VisitingCard'
 import Image from './Image';
 import Text from './Text';
 
+const DEFAULT_CARD_TEMPLATE = {
+  id: uuidv4(),
+  cardStyles: {
+    backgroundColor: "#ccc"
+  },
+  cardElements: []
+}
+
 const CARDS = [
   {
     id: uuidv4(),
@@ -479,7 +487,13 @@ const getElementComponent = (element) => {
 
 const TemplatePicker = ({ goNext, selectCardToEdit }) => {
   const selectCard = (card) => {
-    selectCardToEdit(card)
+    let cardToEdit = { ...DEFAULT_CARD_TEMPLATE }
+    
+    if (card) {
+      cardToEdit = card
+    }
+
+    selectCardToEdit(cardToEdit)
     goNext()
   }
 
@@ -501,7 +515,9 @@ const TemplatePicker = ({ goNext, selectCardToEdit }) => {
           ))
         }
         <li className='px-5 mb-10'>
-          <VisitingCard classes="hover:scale-105 hover:-rotate-2 duration-150" style={{ backgroundColor: '#ccc' }} clickHandler={goNext} />
+          <VisitingCard classes="hover:scale-105 hover:-rotate-2 duration-150" style={{ backgroundColor: '#ccc' }} clickHandler={() => selectCard()}>
+            <h2 className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>Create your own template</h2>
+          </VisitingCard>
         </li>
       </ul>
     </div>

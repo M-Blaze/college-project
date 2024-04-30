@@ -24,6 +24,7 @@ const useDraggable = () => {
     
     e.target.style.left = newCoordinateX
     e.target.style.top = newCoordinateY
+    return { left: newCoordinateX, top: newCoordinateY }
   }
 
   
