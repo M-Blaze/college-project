@@ -46,11 +46,6 @@
   top: 20px;
 }
 
-img {
-  display: block;
-  width: 100%;
-}
-
 /* remove animations for people who've turned them off */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -209,4 +204,22 @@ p {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+input {
+  max-width: 100%;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+select {
+  text-overflow: '';
+  text-indent: 1px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }

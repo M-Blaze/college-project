@@ -107,3 +107,38 @@ export const editDigicard = async (req, res) => {
         res.status(500).json({ error: 'Error updating profile data.' });
     }
 };
+
+
+export const saveTemplate = async (req, res) => {
+    try {
+        const card = req.body;
+        
+        const newdigicard = new digiCard(card);
+        await newdigicard.save();
+
+        res.status(200).json({ success: true });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Error saving profile data.' });
+    }
+}
+
+export const deleteCard = (req, res) => {
+    const cardId = req.params.cardId
+
+    digiCard.findByIdAndDelete(cardId).then(() => {
+        res.status(200).send({ success: true })
+    }).catch(e => {
+        res.status(400).send({ success: false })
+    })
+}
+export const getCard = (req, res) => {
+    const cardId = req.params.cardId
+
+    digiCard.findById(cardId).then((card) => {
+        res.status(200).send({ success: true, card })
+    }).catch(e => {
+        res.status(400).send({ success: false })
+    })
+}

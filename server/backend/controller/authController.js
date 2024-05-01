@@ -112,7 +112,6 @@ export const login_post = (req, res) => {
 
 
 export const authUser = asyncHandler(async (req, res) => {
-    console.log("auth")
     const { email, password } = req.body
     const user = await User.findOne({ email })
 

@@ -3,10 +3,10 @@ import './dashboard.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import QRCodeGenerator from './QRCodeGenerator';
+
 import Navbar from '../components/Navbar';
+import CardInDashboard from '../components/CardInDashboard';
 
 
 function DashBoard() {
@@ -26,6 +26,7 @@ function DashBoard() {
             }
 
             const response = await axios.get(`/digiCardsByUser/${userInfo.data._id}`, config);
+
             setDigiCards(response.data);
             setLoading(false);
         } catch (error) {
@@ -47,33 +48,24 @@ function DashBoard() {
         return <div>Loading...</div>;
     }
 
+    const deleteCard = (index, id) => {
+        const cards = structuredClone(digiCards)
+        
+        cards.splice(index, 1)
+        setDigiCards(cards)
+        axios.delete(`/digicard/${id}`);
+    }
+
     return (
         <div className='dashBoard pb-5'>
             <Navbar />
-            <h2 className='text-black'>DashBoard</h2>
-            <div className='tableContainer'>
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Details</th>
-                            <th>QR code</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {digiCards.map((digiCard, index) => (
-                            <tr key={index + 1}>
-                                <td>{index + 1}</td>
-                                <td>
-                                    <Link to={`/digitalcardPage/${digiCard._id}`}>View Digital Card</Link>
-                                </td>
-                                <td>
-                                    <QRCodeGenerator url={`${process.env.REACT_APP_CLIENT_DOMAIN}/digitalcardPage/${digiCard._id}`} />
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+            <h2 className='text-black'>My Cards</h2>
+            <div className="container">
+                <div className="cards-list -mx-2 flex flex-wrap">
+                    {
+                        digiCards.map((card, index) => <CardInDashboard key={card._id} cardData={card} deleteCard={() => deleteCard(index, card._id)} />)
+                    }
+                </div>
             </div>
         </div>
     );
