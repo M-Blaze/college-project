@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import { toPng, toBlob } from 'html-to-image';
 import { Link, Trash2, Download } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
+import { QRCodeSVG } from 'qrcode.react';
 
 import VisitingCard from './VisitingCard';
 import Image from './Image';
@@ -16,9 +17,17 @@ const CardInDashboard = ({ cardData, deleteCard }) => {
     const navigate = useNavigate()
     const cardRef = useRef(null)
     const getElementComponent = (element) => {
+        if (element.isQr) {
+            return (
+                <div className="qr-code absolute" style={element.styles}>
+                    <QRCodeSVG id="qr-svg" value={`${process.env.REACT_APP_CLIENT_DOMAIN}/card/${cardData._id}`} width="100%" height="100%" />
+                </div>
+            )
+        }
         if (element.type === 'image') {
             return <Image key={element.id} imageData={element} />
         }
+
     
         return <Text key={element.id} textData={element} />
     }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { QRCodeSVG } from 'qrcode.react';
 
 import VisitingCard from '../components/VisitingCard';
 import Image from '../components/Image';
@@ -21,6 +22,13 @@ const CardDisplay = () => {
   };
 
   const getElementComponent = (element) => {
+    if (element.isQr) {
+      return (
+          <div className="qr-code absolute" style={element.styles}>
+              <QRCodeSVG id="qr-svg" value={`${process.env.REACT_APP_CLIENT_DOMAIN}/card/${cardData._id}`} width="100%" height="100%" />
+          </div>
+      )
+  }
     if (element.type === 'image') {
         return <Image key={element.id} imageData={element} />
     }
