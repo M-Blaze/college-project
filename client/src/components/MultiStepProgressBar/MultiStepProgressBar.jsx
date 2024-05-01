@@ -2,10 +2,10 @@ import React from "react";
 import { ProgressBar, Step } from "react-step-progress-bar";
 import "./MultiStepProgressBar.css";
 
-const QUARTER_STEP = 16.665
-const steps = new Array(4).fill(null)
+const QUARTER_STEP = 50
+const steps = new Array(2).fill(null)
 const MultiStepProgressBar = ({ activeStep, stepHandler }) => {
-  let stepPercentage = activeStep * QUARTER_STEP
+  let stepPercentage = (activeStep - 1) * QUARTER_STEP
 
   const stepChanger = (index) => {
     const newStep = (2*index) + 1

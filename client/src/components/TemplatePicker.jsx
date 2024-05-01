@@ -506,7 +506,7 @@ const TemplatePicker = ({ goNext, selectCardToEdit }) => {
         {
           CARDS.map(card => (
             <li className='px-5 mb-10' key={card.id}>
-              <VisitingCard classes="hover:scale-105 hover:-rotate-2 duration-150" style={card.cardStyles} clickHandler={() => selectCard(card)}>
+              <VisitingCard classes="hover:scale-105 hover:-rotate-2 duration-150 cursor-pointer" style={card.cardStyles} clickHandler={() => selectCard(card)}>
                 {
                   card.cardElements.map(element => getElementComponent(element))
                 }
@@ -515,7 +515,7 @@ const TemplatePicker = ({ goNext, selectCardToEdit }) => {
           ))
         }
         <li className='px-5 mb-10'>
-          <VisitingCard classes="hover:scale-105 hover:-rotate-2 duration-150" style={{ backgroundColor: '#ccc' }} clickHandler={() => selectCard()}>
+          <VisitingCard classes="hover:scale-105 hover:-rotate-2 duration-150 cursor-pointer" style={{ backgroundColor: '#ccc' }} clickHandler={() => selectCard()}>
             <h2 className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>Create your own template</h2>
           </VisitingCard>
         </li>

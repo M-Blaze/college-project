@@ -1,12 +1,16 @@
 import React, { useMemo, useRef, useState } from 'react'
+import axios from 'axios';
+import { Link } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 
 import VisitingCard from '../VisitingCard'
 import EditableText from '../EditableText'
 import EditableImage from '../EditableImage'
 import TextEditorOptions from './components/TextEditorOptions'
 import CardEditorOptions from './components/CardEditorOptions'
-import { Link } from 'lucide-react';
 
 const DEFAULT_TEXT_DATA = { 
   type: "text",
@@ -33,7 +37,6 @@ const DEFAULT_IMAGE_DATA = {
     zIndex: 0
   }
 }
-
 
 const Linker = ({ link, updateLink }) => {
   const [isLinkInputVisible, setIsLinkInputVisible] = useState(false)
@@ -66,12 +69,15 @@ const Linker = ({ link, updateLink }) => {
   )
 }
 
-const TemplateEditor = ({ cardData, goToTemplateSelector, stepHandler}) => {
+const TemplateEditor = ({ cardData, stepHandler}) => {
   const imageInputRef = useRef()
   const [cardStyles, setCardStyles] = useState(cardData.cardStyles)
   const [cardElements, setCardElements] = useState(cardData.cardElements)
   const [visibleEditor, setVisibleEditor] = useState("")
   const [activeElement, setActiveElement] = useState(null)
+  const navigate = useNavigate()
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   const getHighestZIndex = () => {
     const highestZIndex = cardElements.reduce((max, element) => {
@@ -228,10 +234,20 @@ const TemplateEditor = ({ cardData, goToTemplateSelector, stepHandler}) => {
     setCardElements(elements)
   }
 
-  const saveTemplate = () => {
-    console.log(cardElements)
-  }
+  const saveTemplate = async () => {
+    const cardData = {
+      user: userInfo.data._id,
+      cardStyles,
+      cardElements
+    }
 
+    try {
+      await axios.post("/save-template", cardData);
+      navigate('/dashboard')
+    } catch (error) {
+        console.error('Error saving digiCard:', error);
+    }
+  }
 
   return (
     <div className='container'>
@@ -264,7 +280,7 @@ const TemplateEditor = ({ cardData, goToTemplateSelector, stepHandler}) => {
         <input ref={imageInputRef} onChange={addImageElement} type="file" className="hidden" accept="image/*" />
       </div>
       <div className="actions-group text-center p-10">
-        <button className='mx-2 px-5 py-3 bg-purple-600 text-white rounded-md' onClick={() => stepHandler(1)}>Go back</button>
+        <button className='mx-2 px-5 py-3 bg-purple-600 text-white rounded-md' onClick={() => stepHandler(1)}>Back to template picker</button>
         <button className='mx-2 px-5 py-3 bg-red-400 text-white rounded-md' onClick={saveTemplate}>Save template</button>
       </div>
     </div>
