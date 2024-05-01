@@ -6,12 +6,14 @@ import toast, { Toaster } from 'react-hot-toast';
 import VisitingCard from './VisitingCard';
 import Image from './Image';
 import Text from './Text';
+import { useNavigate } from 'react-router-dom';
 
 const notify = () => {
     toast('Image coplied to clipboard')
 };
 
 const CardInDashboard = ({ cardData, deleteCard }) => {
+    const navigate = useNavigate()
     const cardRef = useRef(null)
     const getElementComponent = (element) => {
         if (element.type === 'image') {
@@ -48,7 +50,7 @@ const CardInDashboard = ({ cardData, deleteCard }) => {
     return (
         <div className='card px-2 mb-4 relative group overflow-hidden' key={cardData._id} >
             <div className="card-content-wrap" ref={cardRef}>
-                <VisitingCard style={cardData.cardStyles}>
+                <VisitingCard clickHandler={() => navigate(`/card/${cardData._id}`)} style={cardData.cardStyles}>
                     { cardData.cardElements.map(element => getElementComponent(element)) }
                 </VisitingCard>
             </div>

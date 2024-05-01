@@ -3,7 +3,7 @@ import React from 'react'
 const Text = ({ textData }) => {
   let classes = "text-holder absolute"
   const openLink = () => {
-    if (!textData.link) return 
+    if (!textData.link) return
     
     window.open(textData.link, '_blank');
   }

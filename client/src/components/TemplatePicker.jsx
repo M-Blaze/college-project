@@ -25,6 +25,20 @@ const CARDS = [
     cardElements: [
       {
         id: uuidv4(),
+        type: "image",
+        isQr: true,
+        src: "/assets/images/qrcode.png",
+        styles: {
+          left: 'calc(50% + 131px)',
+          top: 'calc(50% + 46px)',
+          transform: "translate(-50%, -50%)",
+          zIndex: 1,
+          width: "calc(73px)",
+          height: "calc(71px)"
+        }
+      },
+      {
+        id: uuidv4(),
         type: "text",
         content: "Your Name",
         styles: {
@@ -104,6 +118,20 @@ const CARDS = [
       backgroundPosition: "50% 50%"
     },
     cardElements: [
+      {
+        id: uuidv4(),
+        type: "image",
+        isQr: true,
+        src: "/assets/images/qrcode.png",
+        styles: {
+          left: 'calc(50% - 172px)',
+          top: 'calc(50% + -16px)',
+          transform: "translate(-50%, -50%)",
+          zIndex: 1,
+          width: "calc(73px)",
+          height: "calc(71px)"
+        }
+      },
       {
         id: uuidv4(),
         type: "text",
@@ -201,6 +229,20 @@ const CARDS = [
     cardElements: [
       {
         id: uuidv4(),
+        type: "image",
+        isQr: true,
+        src: "/assets/images/qrcode.png",
+        styles: {
+          left: 'calc(50% - 175px)',
+          top: 'calc(50% - 70px)',
+          transform: "translate(-50%, -50%)",
+          zIndex: 1,
+          width: "calc(73px)",
+          height: "calc(71px)"
+        }
+      },
+      {
+        id: uuidv4(),
         type: "text",
         content: "Your Name",
         styles: {
@@ -296,6 +338,20 @@ const CARDS = [
     cardElements: [
       {
         id: uuidv4(),
+        type: "image",
+        isQr: true,
+        src: "/assets/images/qrcode.png",
+        styles: {
+          left: 'calc(50% + 80px)',
+          top: 'calc(50% + 17px)',
+          transform: "translate(-50%, -50%)",
+          zIndex: 1,
+          width: "calc(73px)",
+          height: "calc(71px)"
+        }
+      },
+      {
+        id: uuidv4(),
         type: "text",
         content: "Your Name",
         styles: {
@@ -389,6 +445,20 @@ const CARDS = [
       backgroundPosition: "50% 50%"
     },
     cardElements: [
+      {
+        id: uuidv4(),
+        type: "image",
+        isQr: true,
+        src: "/assets/images/qrcode.png",
+        styles: {
+          left: 'calc(50% - 166px)',
+          top: 'calc(50% - 60px)',
+          transform: "translate(-50%, -50%)",
+          zIndex: 1,
+          width: "calc(73px)",
+          height: "calc(71px)"
+        }
+      },
       {
         id: uuidv4(),
         type: "text",

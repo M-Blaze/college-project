@@ -9,6 +9,7 @@ import Register from './pages/Register'
 import CardPage from './pages/CardPage'
 import DashBoard from './pages/DashBoard';
 import Edit from './pages/Edit';
+import CardDisplay from './pages/CardDisplay';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/digitalcardPage/:id' element={<CardPage />}></Route>
         <Route path='/dashBoard' element={<DashBoard />}></Route>
         <Route path='/edit/:id' element={<Edit />}></Route>
+        <Route path='/card/:cardId' element={<CardDisplay />}></Route>
       </Routes>
     </div>
   );

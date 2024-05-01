@@ -133,3 +133,12 @@ export const deleteCard = (req, res) => {
         res.status(400).send({ success: false })
     })
 }
+export const getCard = (req, res) => {
+    const cardId = req.params.cardId
+
+    digiCard.findById(cardId).then((card) => {
+        res.status(200).send({ success: true, card })
+    }).catch(e => {
+        res.status(400).send({ success: false })
+    })
+}
