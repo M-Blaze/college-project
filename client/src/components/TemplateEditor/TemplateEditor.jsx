@@ -114,6 +114,10 @@ const TemplateEditor = ({ cardData, stepHandler}) => {
 
   const removeElement = (index) => {
     const cloned__cardElements = structuredClone(cardElements)
+    
+    if (cloned__cardElements[index].contentType) {
+      return
+    }
 
     cloned__cardElements.splice(index, 1)
     setCardElements(cloned__cardElements)
