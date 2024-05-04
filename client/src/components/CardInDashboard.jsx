@@ -16,11 +16,18 @@ const notify = () => {
 const CardInDashboard = ({ cardData, deleteCard }) => {
     const navigate = useNavigate()
     const cardRef = useRef(null)
+    const qrContact = `BEGIN:VCARD\nVERSION:3.0\nN:M9811064326\nEMAIL:raimoulik@gmail.com\nEND:VCARD`
     const getElementComponent = (element) => {
         if (element.isQr) {
+            const vCard = {
+                "vCardVersion": "4.0",
+                "fn": "John Doe",
+                "n": "Doe;John;;",
+                "tel": ["+1234567890"],
+                };
             return (
                 <div className="qr-code absolute" style={element.styles}>
-                    <QRCodeSVG id="qr-svg" value={`${process.env.REACT_APP_CLIENT_DOMAIN}/card/${cardData._id}`} width="100%" height="100%" />
+                    <QRCodeSVG id="qr-svg" value={JSON.stringify(vCard)} width="100%" height="100%" />
                 </div>
             )
         }
