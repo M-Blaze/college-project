@@ -16,18 +16,17 @@ const notify = () => {
 const CardInDashboard = ({ cardData, deleteCard }) => {
     const navigate = useNavigate()
     const cardRef = useRef(null)
-    const qrContact = `BEGIN:VCARD\nVERSION:3.0\nN:M9811064326\nEMAIL:raimoulik@gmail.com\nEND:VCARD`
     const getElementComponent = (element) => {
         if (element.isQr) {
-            const vCard = {
-                "vCardVersion": "4.0",
-                "fn": "John Doe",
-                "n": "Doe;John;;",
-                "tel": ["+1234567890"],
-                };
+            const fullNameElement = cardData.cardElements.find(item => item.contentType === 'full name')
+            const phoneElement = cardData.cardElements.find(item => item.contentType === 'phone')
+            const [firstName, lastName] = fullNameElement.content.split(' ')
+            const phone = phoneElement.content
+            const vCard = `BEGIN:VCARD\nVERSION:3.0\nFN;CHARSET=UTF-8:${firstName} ${lastName}\nTEL;TYPE=WORK,VOICE:${phone}\nREV:2024-05-04T11:06:33.503Z\nEND:VCARD`
+
             return (
-                <div className="qr-code absolute" style={element.styles}>
-                    <QRCodeSVG id="qr-svg" value={JSON.stringify(vCard)} width="100%" height="100%" />
+                <div key={element.id} className="qr-code absolute" style={element.styles}>
+                    <QRCodeSVG id="qr-svg" value={vCard} width="100%" height="100%" />
                 </div>
             )
         }
