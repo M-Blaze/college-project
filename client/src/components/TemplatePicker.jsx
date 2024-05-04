@@ -40,6 +40,7 @@ const CARDS = [
       {
         id: uuidv4(),
         type: "text",
+        contentType: "full name",
         content: "Your Name",
         styles: {
           fontWeight: 400,
@@ -54,6 +55,7 @@ const CARDS = [
       {
         id: uuidv4(),
         type: "text",
+        contentType: "phone",
         content: "Phone number",
         styles: {
           fontWeight: 400,
@@ -135,6 +137,7 @@ const CARDS = [
       {
         id: uuidv4(),
         type: "text",
+        contentType: "full name",
         content: "Your Name",
         styles: {
           fontWeight: 400,
@@ -149,6 +152,7 @@ const CARDS = [
       {
         id: uuidv4(),
         type: "text",
+        contentType: "phone",
         content: "Phone number",
         styles: {
           fontWeight: 400,
@@ -244,6 +248,7 @@ const CARDS = [
       {
         id: uuidv4(),
         type: "text",
+        contentType: "full name",
         content: "Your Name",
         styles: {
           fontWeight: 400,
@@ -258,6 +263,7 @@ const CARDS = [
       {
         id: uuidv4(),
         type: "text",
+        contentType: "phone",
         content: "Phone number",
         styles: {
           fontWeight: 400,
@@ -353,6 +359,7 @@ const CARDS = [
       {
         id: uuidv4(),
         type: "text",
+        contentType: "full name",
         content: "Your Name",
         styles: {
           fontWeight: 400,
@@ -367,6 +374,7 @@ const CARDS = [
       {
         id: uuidv4(),
         type: "text",
+        contentType: "phone",
         content: "Phone number",
         styles: {
           fontWeight: 400,
@@ -462,6 +470,7 @@ const CARDS = [
       {
         id: uuidv4(),
         type: "text",
+        contentType: "full name",
         content: "Your Name",
         styles: {
           fontWeight: 400,
@@ -476,6 +485,7 @@ const CARDS = [
       {
         id: uuidv4(),
         type: "text",
+        contentType: "phone",
         content: "Phone number",
         styles: {
           fontWeight: 400,
