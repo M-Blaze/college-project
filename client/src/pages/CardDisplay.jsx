@@ -23,12 +23,20 @@ const CardDisplay = () => {
 
   const getElementComponent = (element) => {
     if (element.isQr) {
+      const fullNameElement = cardData.cardElements.find(item => item.contentType === 'full name')
+      const phoneElement = cardData.cardElements.find(item => item.contentType === 'phone')
+      const [firstName, lastName] = fullNameElement.content.split(' ')
+      const phone = phoneElement.content
+      const website = `${process.env.REACT_APP_CLIENT_DOMAIN}/card/${cardData._id}`
+      const vCard = `BEGIN:VCARD\nVERSION:4.0\nFN;:${firstName} ${lastName}\nTEL;TYPE=HOME,VOICE:${phone}\nURL;type=pref:${website}\nEND:VCARD`
+
       return (
-          <div className="qr-code absolute" style={element.styles}>
-              <QRCodeSVG id="qr-svg" value={`${process.env.REACT_APP_CLIENT_DOMAIN}/card/${cardData._id}`} width="100%" height="100%" />
-          </div>
+        <div key={element.id} className="qr-code absolute" style={element.styles}>
+          <QRCodeSVG id="qr-svg" value={vCard} width="100%" height="100%" />
+        </div>
       )
-  }
+    }
+
     if (element.type === 'image') {
         return <Image key={element.id} imageData={element} />
     }

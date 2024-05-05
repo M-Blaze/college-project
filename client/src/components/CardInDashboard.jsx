@@ -22,7 +22,8 @@ const CardInDashboard = ({ cardData, deleteCard }) => {
             const phoneElement = cardData.cardElements.find(item => item.contentType === 'phone')
             const [firstName, lastName] = fullNameElement.content.split(' ')
             const phone = phoneElement.content
-            const vCard = `BEGIN:VCARD\nVERSION:3.0\nFN;CHARSET=UTF-8:${firstName} ${lastName}\nTEL;TYPE=WORK,VOICE:${phone}\nREV:2024-05-04T11:06:33.503Z\nEND:VCARD`
+            const website = `${process.env.REACT_APP_CLIENT_DOMAIN}/card/${cardData._id}`
+            const vCard = `BEGIN:VCARD\nVERSION:4.0\nFN;:${firstName} ${lastName}\nTEL;TYPE=HOME,VOICE:${phone}\nURL;type=pref:${website}\nEND:VCARD`
 
             return (
                 <div key={element.id} className="qr-code absolute" style={element.styles}>
@@ -30,11 +31,11 @@ const CardInDashboard = ({ cardData, deleteCard }) => {
                 </div>
             )
         }
+
         if (element.type === 'image') {
             return <Image key={element.id} imageData={element} />
         }
 
-    
         return <Text key={element.id} textData={element} />
     }
 
