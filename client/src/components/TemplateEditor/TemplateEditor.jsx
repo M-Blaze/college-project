@@ -277,7 +277,7 @@ const TemplateEditor = ({ cardData, stepHandler}) => {
                 return <EditableText key={element.id} textData={element} removeElement={() => removeElement(index)} setActive={() => setActiveElementHandler(element.id, "text")} updateElement={updateMultipleStylesOfElement} />
               }
 
-              return <EditableImage key={element.id} removeElement={() => removeElement(index)} styles={element.styles} src={element.src} setActive={() => setActiveElementHandler(element.id, "image")} updateElement={updateMultipleStylesOfElement} />
+              return <EditableImage key={element.id} removeElement={() => removeElement(index)} imageData={element} setActive={() => setActiveElementHandler(element.id, "image")} updateElement={updateMultipleStylesOfElement} />
             })
           }
         </VisitingCard>

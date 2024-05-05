@@ -10,7 +10,22 @@ const DEFAULT_CARD_TEMPLATE = {
   cardStyles: {
     backgroundColor: "#ccc"
   },
-  cardElements: []
+  cardElements: [
+    {
+      id: uuidv4(),
+      type: "image",
+      isQr: true,
+      src: "/assets/images/qrcode.png",
+      styles: {
+        left: 'calc(50% - 172px)',
+        top: 'calc(50% + -16px)',
+        transform: "translate(-50%, -50%)",
+        zIndex: 1,
+        width: "80px",
+        height: "80px"
+      }
+    }
+  ]
 }
 
 const CARDS = [
@@ -29,12 +44,12 @@ const CARDS = [
         isQr: true,
         src: "/assets/images/qrcode.png",
         styles: {
-          left: 'calc(50% + 131px)',
-          top: 'calc(50% + 46px)',
+          left: 'calc(50% + 222px)',
+          top: 'calc(50% + 92px)',
           transform: "translate(-50%, -50%)",
           zIndex: 1,
-          width: "calc(73px)",
-          height: "calc(71px)"
+          width: "80px",
+          height: "80px"
         }
       },
       {
@@ -70,6 +85,7 @@ const CARDS = [
       {
         id: uuidv4(),
         type: "text",
+        contentType: "email",
         content: "Your Email",
         styles: {
           fontWeight: 400,
@@ -130,8 +146,8 @@ const CARDS = [
           top: 'calc(50% + -16px)',
           transform: "translate(-50%, -50%)",
           zIndex: 1,
-          width: "calc(73px)",
-          height: "calc(71px)"
+          width: "80px",
+          height: "80px"
         }
       },
       {
@@ -143,7 +159,7 @@ const CARDS = [
           fontWeight: 400,
           fontSize: "18px",
           left: 'calc(50% - 180px)',
-          top: 'calc(50% + 63px)',
+          top: 'calc(50% + 72px)',
           transform: "translate(-50%, -50%)",
           zIndex: 1,
           color: "rgb(255, 255, 255)"
@@ -167,6 +183,7 @@ const CARDS = [
       {
         id: uuidv4(),
         type: "text",
+        contentType: "email",
         content: "Your Email",
         styles: {
           fontWeight: 400,
@@ -241,8 +258,8 @@ const CARDS = [
           top: 'calc(50% - 70px)',
           transform: "translate(-50%, -50%)",
           zIndex: 1,
-          width: "calc(73px)",
-          height: "calc(71px)"
+          width: "80px",
+          height: "80px"
         }
       },
       {
@@ -278,6 +295,7 @@ const CARDS = [
       {
         id: uuidv4(),
         type: "text",
+        contentType: "email",
         content: "Your Email",
         styles: {
           fontWeight: 400,
@@ -324,7 +342,7 @@ const CARDS = [
         styles: {
           fontWeight: 400,
           fontSize: "18px",
-          left: 'calc(50% - 165px)',
+          left: 'calc(50% - 175px)',
           top: 'calc(50% - 0px)',
           transform: "translate(-50%, -50%)",
           zIndex: 4,
@@ -352,8 +370,8 @@ const CARDS = [
           top: 'calc(50% + 17px)',
           transform: "translate(-50%, -50%)",
           zIndex: 1,
-          width: "calc(73px)",
-          height: "calc(71px)"
+          width: "80px",
+          height: "80px"
         }
       },
       {
@@ -389,6 +407,7 @@ const CARDS = [
       {
         id: uuidv4(),
         type: "text",
+        contentType: "email",
         content: "Your Email",
         styles: {
           fontWeight: 400,
@@ -463,8 +482,8 @@ const CARDS = [
           top: 'calc(50% - 60px)',
           transform: "translate(-50%, -50%)",
           zIndex: 1,
-          width: "calc(73px)",
-          height: "calc(71px)"
+          width: "80px",
+          height: "80px"
         }
       },
       {
@@ -500,6 +519,7 @@ const CARDS = [
       {
         id: uuidv4(),
         type: "text",
+        contentType: "email",
         content: "Your Email",
         styles: {
           fontWeight: 400,
