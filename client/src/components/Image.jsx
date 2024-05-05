@@ -4,12 +4,12 @@ const Image = ({ imageData }) => {
   let classes = "img-holder absolute"
   
   const openLink = () => {
-    if (!imageData.url) return 
+    if (!imageData.link) return 
 
-    window.open(imageData.url, '_blank');
+    window.open(imageData.link, '_blank');
   }
 
-  if (imageData.url) {
+  if (imageData.link) {
     classes = `${classes} cursor-pointer`
   }
 
